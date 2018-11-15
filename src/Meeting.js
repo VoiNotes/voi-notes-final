@@ -83,33 +83,66 @@ class Meeting extends Component {
     }
 
     sendMail = () => {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var uid = document.getElementById("userid").value;
+        var upas = document.getElementById("userpwd").value;
+        console.log("id", uid, "pass", upas, re.test(uid));
         // var recipients = ["sharma.devansh@rediffmail.com", "devansh.sharma@gmail.com", "sharmadevansh82@yahoo.com"];
-        var recipients = document.getElementById("recs").value;
-        recipients = recipients.split("\n");
-        recipients.splice(-1, 1);
-        var jrps = JSON.stringify(recipients);
-        console.log(jrps);
-        $.ajax({
-            url: 'http://localhost:8888/VoiNotes/mailer.php',
-            type: 'POST',
-            data: {
-                'username': document.getElementById("userid").value,
-                'password': document.getElementById("userpwd").value,
-                'message': 'It is a working !!!',
-                'recipients': jrps
-            },
-            success: (data) => {
-                console.log(data);
-            },
-            error: function (xhr, status, err) {
-                console.log("Error reported by AJAX " + err);
-            }
-        });
+        console.log(uid !== "" && upas !== "" && re.test(uid));
+        console.log(uid !== "");
+
+        var u, p;
+        u = true;
+        p = true;
+
+        if (uid === "" || re.test(uid) === false) {
+            document.getElementById("userid").style.border = "2px solid red";
+            document.getElementById("userid").style.backgroundColor = "rgb(221, 195, 195)";
+            u = false;
+        } else {
+            document.getElementById("userid").style.border = "none";
+            document.getElementById("userid").style.backgroundColor = "none";
+            u = true;
+        }
+        
+        if (upas === "") {
+            document.getElementById("userpwd").style.border = "2px solid red";
+            document.getElementById("userpwd").style.backgroundColor = "rgb(221, 195, 195)";
+            p = false;
+        } else {
+            document.getElementById("userpwd").style.border = "0px solid white";
+            document.getElementById("userpwd").style.backgroundColor = "rgb(255, 255, 255)";
+            p = true;
+        }
+
+        if (u === true && p === true) {
+            var recipients = document.getElementById("recs").value;
+            recipients = recipients.split("\n");
+            recipients.splice(-1, 1);
+            var jrps = JSON.stringify(recipients);
+            console.log(jrps);
+            $.ajax({
+                url: 'http://localhost:8888/VoiNotes/mailer.php',
+                type: 'POST',
+                data: {
+                    'username': document.getElementById("userid").value,
+                    'password': document.getElementById("userpwd").value,
+                    'message': 'It is a working !!!',
+                    'recipients': jrps
+                },
+                success: (data) => {
+                    console.log(data);
+                },
+                error: function (xhr, status, err) {
+                    console.log("Error reported by AJAX " + err);
+                }
+            });
+        }
     }
 
     addRec = () => {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(document.getElementById("recid").value !== "" && re.test(document.getElementById("recid").value) === true) {
+        if (document.getElementById("recid").value !== "" && re.test(document.getElementById("recid").value) === true) {
             document.getElementById("recs").value += document.getElementById("recid").value + "\n";
             document.getElementById("recid").value = "";
             document.getElementById("smail").className = "btn btn-primary";
