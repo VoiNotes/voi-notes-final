@@ -1,0 +1,32 @@
+.App .container .App-header, .container, .App {
+    height: 100%;
+    width: 100%;
+}
+
+#jumbo {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 3px solid #f1f1f1;
+    
+    /* padding: 20px 520px; */
+}
+
+.login, .login:hover {
+    text-decoration: none;
+    /* background: none; */
+    border: 3px solid #f1f1f1;
+    background-color: rgba(30, 65, 30, 0.9);
+    color: rgb(255, 255, 255);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 24px;
+    padding: 10px 50px;
+}
+
+#title {
+    font-size: 80px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: rgb(0, 177, 147);
+    text-align: center;
+}

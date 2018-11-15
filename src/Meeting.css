@@ -1,0 +1,49 @@
+div.meeting {
+    margin-top: 20px;
+}
+
+div.meeting div.react-mic {
+    text-align: center;
+}
+
+div.meeting div.react-mic-control {
+    text-align: center;
+}
+
+#mjumbo {
+    font-size: 25px;
+    padding: 10px;
+}
+
+#greet, #time {
+    display: inline;
+}
+
+#time {
+    float: right;
+}
+
+#mailstuff {
+    /* display: inline; */
+    float: right;
+    /* border: 5px solid black; */
+    padding: 15px;
+}
+
+.form-control {
+    width: 250px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* #userid, #userpwd { */
+    /* display: inline-block; */
+    /* display: block; */
+    /* float: left; */
+/* } */
+
+/* #smail { */
+    /* float: right; */
+/* } */
